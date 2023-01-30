@@ -1,4 +1,5 @@
 require 'socket'
+require 'mime/types'
 require_relative 'lib/request_handler.rb'
 require_relative 'lib/response.rb'
 
@@ -9,11 +10,16 @@ class HTTPServer
     def initialize(port)
         @port = port
         @resource_directory = "html"
+        
+        reponse_info = { 
+            :status => 0, 
+            :data => ""
+            :resource => ""
+        }
     end
 
     def start
         server = TCPServer.new(@port)
-        puts "Listening on #{@port}"
 
         while session = server.accept
             data = ""
@@ -25,29 +31,32 @@ class HTTPServer
             # parse http request
             request_handler = RequestHandler.new
             request = request_handler.parse(data)
-            
+
             # access resource/file
             request_resource = request[:resource]
             resource_path = @resource_directory + request_resource
 
+            resource_type = MIME::Types.type_for(resource_path).first
+            resource_media_type = resource_type.media_type
+            resource_sub_type = resource_type.sub_type
+            
+            p resource_media_type
+
             begin # attempt to open file
-                resource_file = File.open(resource_path, "r")
-            rescue NO_FILE_ERROR, IS_A_DIRECTORY => e # error 404
+                case resource_media_type 
+                when "text"
+                    resource_file = File.open(resource_path, "r")
+                when "image", "application"
+                    resource_file = File.open(resource_path, "rb")
+                end
+            rescue NO_FILE_ERROR, IS_A_DIRECTORY => e
                 Response::status_404(request_resource, session)
                 next
             end
-            
+
             resource_plaintext = resource_file.read
             resource_file.close
-            
-            resource_extension = request_resource.split(".").last
-
-            if resource_extension == "html"
-                html = resource_plaintext
-                Response::status_200(session, html)
-            else
-                Response::status_420(session)
-            end
+            Response::status_200(session, resource_plaintext, resource_type)
         end
     end
 end

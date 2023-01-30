@@ -1,0 +1,16 @@
+class Response
+
+    # def initialize(args)
+        # session.print "HTTP/1.1 #{status}\r\n"
+        # session.print "Content-Type: #{type}\r\n"
+        # session.print "Content-Length: #{data.size}\r\n"
+        # session.print "\r\n"
+        # if args.size == 4
+            # session.print data
+        # else
+            # session.print "<h1> error 404 </h1> \n<p> resource: \"#{resource}\" does not exist. </p>"
+        # end
+        # session.close
+    # end
+
+end
