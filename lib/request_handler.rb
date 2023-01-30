@@ -1,6 +1,6 @@
 class RequestHandler
 
-    def parse(request)
+    def self.parse(request)
         lines = request.split("\n")
         
         request_line = lines
