@@ -6,13 +6,12 @@ class Resource
     NO_FILE_ERROR = Errno::ENOENT.freeze
     IS_A_DIRECTORY = Errno::EISDIR.freeze
     
-    def initialize(resource)
-        file_path = "resources" + resource
+    def initialize(request)
+        file_path = "resources" + request.resource
         @type = MIME::Types.type_for(file_path).first
-        media_type = @type.media_type
-        sub_type = @type.sub_type
-        
-        begin # attempt to open file
+        @type == nil ? media_type = "text" : media_type = @type.media_type
+
+        begin
             case media_type 
             when "text"
                 file = File.open(file_path, "r")
@@ -23,6 +22,7 @@ class Resource
             @status = 200
             file.close 
         rescue NO_FILE_ERROR, IS_A_DIRECTORY => e
+            print(e)
             @status = 404
         end
     end

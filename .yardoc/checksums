@@ -1,0 +1,4 @@
+lib/route.rb 8fe2f4c12be96210b913d8b08d19343c1f5ae27f
+lib/request.rb ba203fb2f36f769a40e019e5647f9df8ece4bce6
+lib/resource.rb f2cefad94a013afbdc1a1a43df5a4a0c112c07e3
+lib/response.rb c3ed29c44d34112c5358b2849918cb2802b3c2d8

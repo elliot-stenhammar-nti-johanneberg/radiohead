@@ -5,6 +5,9 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     minitest (5.16.3)
+    webrick (1.7.0)
+    yard (0.9.28)
+      webrick (~> 1.7.0)
 
 PLATFORMS
   x64-mingw-ucrt
@@ -12,6 +15,7 @@ PLATFORMS
 DEPENDENCIES
   mime-types
   minitest
+  yard
 
 BUNDLED WITH
    2.3.7
