@@ -1,4 +1,6 @@
-lib/route.rb 8fe2f4c12be96210b913d8b08d19343c1f5ae27f
-lib/request.rb ba203fb2f36f769a40e019e5647f9df8ece4bce6
-lib/resource.rb f2cefad94a013afbdc1a1a43df5a4a0c112c07e3
-lib/response.rb c3ed29c44d34112c5358b2849918cb2802b3c2d8
+lib/router.rb 8bf50edb8e274c972e370afedd27a18e79aaca6a
+lib/server.rb a2003431124b4e336cfef1fefcb9bfa78eaa053a
+lib/request.rb 48dfcce7a8a5e2d6321239c2d1b5a288afa0759b
+lib/resource.rb 8b008e98bc047170e2028a1e2eee1f069bb060e9
+lib/response.rb 060d316a2c17076da5d921bfe0efd9a50e04b105
+lib/reponse_builder.rb d804d1bc05f77408f19071e8019707334f384611

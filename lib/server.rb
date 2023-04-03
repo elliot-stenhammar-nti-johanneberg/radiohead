@@ -1,14 +1,18 @@
 require 'socket'
-Dir[File.join(__dir__, 'lib', '*.rb')].each { |file| require file }
 
+# This class represents a HTTP server
 class Server
-
+    
+    # Creates a new instance of Server
+    #
+    # @param [Integer] port The server port
     def initialize(port)
         @port = port
-        @routes = {}
+        @router = Router.new()
     end
 
-    def start
+    # Starts the server to listen for incoming connections
+    def start()
         server = TCPServer.new(@port)
 
         while session = server.accept
@@ -19,18 +23,24 @@ class Server
             end
 
             request = Request.new(data)
-            #CHECK ROUTES AND EXECUTE CODE...
-            resource = Resource.new(request)
-            response = Response.new(resource)
-            response.send(session)
+            response = ResponseBuilder.new(request, session, @router).build()
+            response.send()
         end
     end
 
-    def get(path, &block) 
-         @routes[path] = {:code => @block} 
+    # Adds a new route to the server with the GET method
+    #
+    # @param [String] path The path for the route
+    # @yield The block to be executed when the route is accessed
+    def get(path, &block)
+        @router.add_route("GET", path, &block)
     end
 
-    def post()
-
+    # Adds a new route to the server with the POST method
+    #
+    # @param [String] path The path for the route
+    # @yield The block to be executed when the route is accessed
+    def post(path, &block)
+        @router.add_route("POST", path, &block)
     end
 end
