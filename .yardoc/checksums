@@ -1,6 +1,6 @@
 lib/router.rb 8bf50edb8e274c972e370afedd27a18e79aaca6a
 lib/server.rb a2003431124b4e336cfef1fefcb9bfa78eaa053a
-lib/request.rb 48dfcce7a8a5e2d6321239c2d1b5a288afa0759b
-lib/resource.rb 8b008e98bc047170e2028a1e2eee1f069bb060e9
-lib/response.rb 060d316a2c17076da5d921bfe0efd9a50e04b105
-lib/reponse_builder.rb d804d1bc05f77408f19071e8019707334f384611
+lib/request.rb 49a2be441e904522f91d5dd3b6204e230cc3eb49
+lib/resource.rb d444e4e07b6f9df16ef2392287a7b2651e7bb48d
+lib/response.rb 1f6120666bfbca14aca58279db900f17e05b38e3
+lib/reponse_builder.rb 1aebeb0a5e2814ae619435963470adc53792e310

@@ -12,7 +12,7 @@ class Resource
 
     # Creates a new instance of a Resource
     #
-    # @param [Request] Request object to create resource for
+    # @param request [Request] Request object to create resource for
     def initialize(request)
         file_path = "public" + request.resource
         @type = MIME::Types.type_for(file_path).first
